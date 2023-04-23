@@ -1,0 +1,32 @@
+@use "../../base/functions" as func;
+@use "../../abstracts/colors" as c;
+@use "../../abstracts/variables" as v;
+@use "../../abstracts/mixins" as *;
+
+body {
+  background: c.$magnolia;
+  @media screen and (width > func.rem(768)) and (height > v.$desktop-form-block-size) and (orientation: landscape) {
+    display: grid;
+    place-content: center;
+    height: 100dvh;
+  }
+  @media screen and (width > func.rem(768)) and (height <= v.$desktop-form-block-size) and (orientation: landscape) {
+    margin-block: 2rem;
+  }
+}
+
+.form-block {
+  width: min(100dvw - 2rem, v.$desktop-form-inline-size);
+  margin-inline: auto;
+  @media (width > func.rem(768)) {
+    @include flex(row, flex-start, flex-start);
+    background: c.$white;
+    border-radius: 1rem;
+  }
+  @media (width <= func.rem(768)) {
+    min-height: 100dvh;
+    // min-height: 100%;
+    @include flex(column);
+    // gap: 2rem;
+  }
+}

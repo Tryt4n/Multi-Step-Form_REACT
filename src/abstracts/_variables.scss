@@ -1,0 +1,6 @@
+@use "../base/functions" as func;
+
+$main-transition: 300ms ease-in-out;
+$desktop-form-block-size: func.rem(600);
+$desktop-form-inline-size: func.rem(800);
+$desktop-outside-gap: 1rem;

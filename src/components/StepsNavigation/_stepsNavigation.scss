@@ -1,0 +1,52 @@
+@use "../../abstracts/mixins" as *;
+@use "../../abstracts/colors" as c;
+@use "../../abstracts/variables" as v;
+@use "../../base/functions" as func;
+
+.form-block {
+  position: relative;
+}
+
+.steps-navigation {
+  @include flex(row, space-between);
+  background: c.$white;
+  @media (width <= func.rem(768)) {
+    align-items: center;
+    // position: absolute;
+    // bottom: 0;
+    width: 100dvw;
+    padding: v.$desktop-outside-gap;
+    translate: -1rem;
+  }
+  @media (width > func.rem(768)) {
+    align-items: flex-end;
+    padding-bottom: 1rem;
+    flex-grow: 1;
+  }
+
+  &__btn {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    transition: v.$main-transition;
+    font-family: inherit;
+    font-size: inherit;
+    border-radius: 0.25em;
+
+    &--next {
+      background: c.$marine-blue;
+      color: c.$magnolia;
+      padding: 0.5em 1em;
+      outline-offset: 0.25em;
+      &:where(:hover, :focus-visible) {
+        opacity: 0.85;
+      }
+    }
+    &--back {
+      color: c.$cool-gray;
+      &:where(:hover, :focus-visible) {
+        color: c.$marine-blue;
+      }
+    }
+  }
+}

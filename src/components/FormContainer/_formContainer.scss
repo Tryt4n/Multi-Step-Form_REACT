@@ -1,0 +1,55 @@
+@use "../../base/functions" as func;
+@use "../../abstracts/colors" as c;
+@use "../../abstracts/variables" as v;
+@use "../../abstracts/mixins" as *;
+
+.form-container {
+  &__form {
+    flex-grow: 1;
+  }
+
+  &__input-wrapper {
+    @include flex(column);
+    gap: 2rem;
+  }
+
+  &__label-wrapper {
+    @include flex(row, space-between, center);
+    margin-bottom: 0.5rem;
+  }
+
+  &__label {
+    color: c.$marine-blue;
+    font-weight: 500;
+    margin-right: 1em;
+  }
+
+  &__label-warning-info {
+    font-style: normal;
+    font-weight: bold;
+    text-align: end;
+    color: c.$strawberry-red;
+  }
+
+  &__input {
+    width: 100%;
+    font-family: inherit;
+    font-size: inherit;
+    padding: 1em;
+    outline: none;
+    border: 1px solid c.$light-gray;
+    border-radius: 0.5em;
+    color: c.$marine-blue;
+    font-weight: 500;
+    transition: v.$main-transition;
+    &:hover {
+      border-color: c.$cool-gray;
+    }
+    &:focus-visible {
+      border-color: c.$purplish-blue;
+    }
+    &::placeholder {
+      color: c.$cool-gray;
+    }
+  }
+}

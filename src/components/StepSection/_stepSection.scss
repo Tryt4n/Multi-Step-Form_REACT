@@ -1,0 +1,63 @@
+@use "../../abstracts/mixins" as *;
+@use "../../abstracts/colors" as c;
+@use "../../abstracts/variables" as v;
+@use "../../base/functions" as func;
+
+.steps-list {
+  background-size: cover;
+  background-repeat: no-repeat;
+  counter-reset: my-custom-counter;
+  @media (width > func.rem(768)) {
+    margin-left: v.$desktop-outside-gap;
+    margin-block: v.$desktop-outside-gap;
+    height: func.rem(568);
+    width: func.rem(274);
+    background-image: url("./assets/icons/bg-sidebar-desktop.svg");
+  }
+  @media (width <= func.rem(768)) {
+    height: func.rem(172);
+    width: 100dvw;
+    translate: -1rem;
+    height: 175px;
+    background-image: url("./assets/icons/bg-sidebar-mobile.svg");
+    @include flex(row, center, flex-start);
+    padding-top: 1rem;
+  }
+
+  &__item {
+    padding: 1rem;
+    @include flex(row, flex-start, center);
+    gap: 1rem;
+    text-transform: uppercase;
+  }
+
+  &__counter {
+    height: 1rem;
+    width: 1rem;
+    display: grid;
+    place-content: center;
+    background: transparent;
+    padding: 1rem;
+    border: 1px solid c.$light-blue;
+    border-radius: 50%;
+    font-weight: bold;
+    color: c.$alabaster;
+    &.active {
+      background: c.$light-blue;
+      color: c.$marine-blue;
+    }
+  }
+
+  &__step-text {
+    color: c.$light-gray;
+    font-size: 0.75rem;
+    line-height: 100%;
+    margin-bottom: 0.25rem;
+  }
+  &__step-header {
+    color: c.$alabaster;
+    font-size: 1rem;
+    line-height: 100%;
+    font-weight: 500;
+  }
+}
