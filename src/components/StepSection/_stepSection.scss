@@ -10,6 +10,8 @@
   @media (width > func.rem(768)) {
     margin-left: v.$desktop-outside-gap;
     margin-block: v.$desktop-outside-gap;
+    padding-top: v.$desktop-outside-gap;
+    padding-left: v.$desktop-outside-gap;
     height: func.rem(568);
     width: func.rem(274);
     background-image: url("./assets/icons/bg-sidebar-desktop.svg");
@@ -17,7 +19,7 @@
   @media (width <= func.rem(768)) {
     height: func.rem(172);
     width: 100dvw;
-    translate: -1rem;
+    translate: calc(v.$desktop-outside-gap) * -1;
     height: 175px;
     background-image: url("./assets/icons/bg-sidebar-mobile.svg");
     @include flex(row, center, flex-start);

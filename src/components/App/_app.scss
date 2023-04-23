@@ -5,10 +5,10 @@
 
 body {
   background: c.$magnolia;
-  @media screen and (width > func.rem(768)) and (height > v.$desktop-form-block-size) and (orientation: landscape) {
+  @media screen and (width > func.rem(768)) and (height > v.$desktop-form-block-size) {
     display: grid;
     place-content: center;
-    height: 100dvh;
+    min-height: 100dvh;
   }
   @media screen and (width > func.rem(768)) and (height <= v.$desktop-form-block-size) and (orientation: landscape) {
     margin-block: 2rem;
@@ -25,8 +25,6 @@ body {
   }
   @media (width <= func.rem(768)) {
     min-height: 100dvh;
-    // min-height: 100%;
     @include flex(column);
-    // gap: 2rem;
   }
 }

@@ -11,12 +11,11 @@
   @include flex(row, space-between);
   background: c.$white;
   @media (width <= func.rem(768)) {
-    align-items: center;
-    // position: absolute;
-    // bottom: 0;
+    position: absolute;
+    bottom: 0;
     width: 100dvw;
     padding: v.$desktop-outside-gap;
-    translate: -1rem;
+    translate: calc(v.$desktop-outside-gap) * -1;
   }
   @media (width > func.rem(768)) {
     align-items: flex-end;
@@ -32,11 +31,11 @@
     font-family: inherit;
     font-size: inherit;
     border-radius: 0.25em;
+    padding: 0.5em 1em;
 
     &--next {
       background: c.$marine-blue;
       color: c.$magnolia;
-      padding: 0.5em 1em;
       outline-offset: 0.25em;
       &:where(:hover, :focus-visible) {
         opacity: 0.85;
@@ -44,6 +43,7 @@
     }
     &--back {
       color: c.$cool-gray;
+      translate: -0.5em;
       &:where(:hover, :focus-visible) {
         color: c.$marine-blue;
       }

@@ -1,5 +1,6 @@
+// import PersonalInfo from "../PersonalInfo/personalInfo";
+import SelectPlan from "../SelectPlan/SelectPlan";
 import StepsNavigation from "../StepsNavigation/StepsNavigation";
-import FormContainer from "../FormContainer/FormContainer";
 
 export default function MainContainer({ width, headerText, instructiveText }) {
   return (
@@ -9,7 +10,8 @@ export default function MainContainer({ width, headerText, instructiveText }) {
         <p className="main-container__instructive-text">{instructiveText}</p>
       </header>
 
-      <FormContainer />
+      {/* <PersonalInfo /> */}
+      <SelectPlan />
 
       {width >= 768 && <StepsNavigation />}
     </article>
