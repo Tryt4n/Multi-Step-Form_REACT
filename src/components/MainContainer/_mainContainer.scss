@@ -18,6 +18,9 @@
     translate: 0 func.rem(-75);
     margin-bottom: 2rem;
   }
+  @media (width < func.rem(375)) {
+    padding: 1rem;
+  }
 
   &__text-container {
     margin-block: 2rem;

@@ -1,0 +1,96 @@
+@use "../../abstracts/mixins" as *;
+@use "../../abstracts/colors" as c;
+@use "../../abstracts/variables" as v;
+@use "../../base/functions" as func;
+
+.pick-add-ons-container {
+  @include flex(column);
+  gap: 1rem;
+  padding-bottom: 1rem;
+}
+
+.pick-add-ons-card {
+  padding: 1.5rem;
+  border: 1px solid c.$light-gray;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  @include flex(row, flex-start, center);
+  gap: 1.5rem;
+  transition-property: background, border-color;
+  transition-duration: 300ms;
+  @media (width < func.rem(375)) {
+    padding: 0.5rem;
+  }
+  &:where(:hover, :focus-within) {
+    background: c.$alabaster;
+    border-color: c.$purplish-blue;
+  }
+  &.active {
+    background: c.$magnolia;
+    border-color: c.$purplish-blue;
+  }
+
+  &__checkbox {
+    position: relative;
+    appearance: none;
+    outline: none;
+    width: v.$checkbox-size;
+    height: v.$checkbox-size;
+    margin: 0;
+    &::before {
+      position: absolute;
+      content: "";
+      width: v.$checkbox-size;
+      height: v.$checkbox-size;
+      background: transparent;
+      border: 1px solid c.$light-gray;
+      border-radius: 0.25rem;
+      transition: v.$main-transition;
+    }
+    &::after {
+      content: url("./images/icon-checkmark.svg");
+      position: absolute;
+      width: v.$checkbox-size;
+      height: v.$checkbox-size;
+      display: grid;
+      place-content: center;
+      visibility: hidden;
+      opacity: 0;
+      transition: v.$main-transition;
+    }
+  }
+  &__checkbox:where(:hover, :focus-visible)::before {
+    background: c.$light-gray;
+  }
+  &__checkbox:where(:hover, :focus-visible)::after {
+    opacity: 0.5;
+    visibility: visible;
+  }
+  &__checkbox:checked::before {
+    background: c.$purplish-blue;
+    border-color: transparent;
+  }
+  &__checkbox:checked::after {
+    visibility: visible;
+    opacity: 1;
+  }
+
+  &__label-container {
+    flex-grow: 1;
+  }
+
+  &__header {
+    font-size: 1rem;
+    color: c.$marine-blue;
+    margin-bottom: 0.25rem;
+  }
+
+  &__text {
+    color: c.$cool-gray;
+  }
+
+  &__price {
+    font-style: normal;
+    color: c.$purplish-blue;
+  }
+}

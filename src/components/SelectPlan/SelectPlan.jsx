@@ -112,7 +112,7 @@ export default function SelectPlan({
         >
           {arcadeSvg}
           <div className="card__text-wrapper">
-            <h3 className="card__header">Arcade</h3>
+            <h2 className="card__header">Arcade</h2>
             <p className="card__price">{isMonthlyChecked ? "$9/mo" : "$90/yr"}</p>
             {!isMonthlyChecked && <em className="card__free-info">2 months free</em>}
           </div>
@@ -123,7 +123,7 @@ export default function SelectPlan({
         >
           {advancedSvg}
           <div className="card__text-wrapper">
-            <h3 className="card__header">Advanced</h3>
+            <h2 className="card__header">Advanced</h2>
             <p className="card__price">{isMonthlyChecked ? "$12/mo" : "$120/yr"}</p>
             {!isMonthlyChecked && <em className="card__free-info">2 months free</em>}
           </div>
@@ -134,7 +134,7 @@ export default function SelectPlan({
         >
           {proSvg}
           <div className="card__text-wrapper">
-            <h3 className="card__header">Pro</h3>
+            <h2 className="card__header">Pro</h2>
             <p className="card__price">{isMonthlyChecked ? "$15/mo" : "$150/yr"}</p>
             {!isMonthlyChecked && <em className="card__free-info">2 months free</em>}
           </div>
