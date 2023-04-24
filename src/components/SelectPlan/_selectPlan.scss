@@ -19,13 +19,18 @@
   transition: v.$main-transition;
   background: transparent;
   outline-offset: 0.25rem;
+  font-family: inherit;
+  font-size: inherit;
+  cursor: pointer;
   @media (width <= func.rem(768)) {
-    @include flex(row, flex-start, center);
+    @include flex(row, flex-start, flex-start);
     gap: 1rem;
   }
 
   &__text-wrapper {
     text-align: start;
+    @include flex(column);
+    gap: 0.25rem;
     @media (width > func.rem(768)) {
       margin-top: 3rem;
     }
@@ -33,15 +38,21 @@
 
   &__header {
     color: c.$marine-blue;
-    margin-bottom: 0.25em;
   }
   &__price {
     color: c.$cool-gray;
+  }
+  &__free-info {
+    color: c.$marine-blue;
+    font-weight: 500;
+    font-size: 0.9rem;
+    font-style: normal;
   }
 
   &.active {
     background: c.$magnolia;
     border-color: c.$purplish-blue;
+    cursor: default;
   }
   &:where(:hover, :focus-visible) {
     background: c.$alabaster;
@@ -49,31 +60,24 @@
   }
 }
 
+//* Toggle Switch
 .switch-container {
   background: c.$magnolia;
   @include flex(row, center, center);
   gap: 1rem;
-  padding-block: 1rem;
+  padding-block: 0.5rem;
   border-radius: 0.5rem;
 }
 
 .switch {
   position: relative;
-  height: 1.4rem;
-  width: 2.8rem;
+  height: v.$switch-height;
+  width: v.$switch-width;
   background: c.$marine-blue;
   border-radius: 9999px;
   transition: v.$main-transition;
   cursor: pointer;
-
-  &__input {
-  }
-  &__label {
-    font-weight: 500;
-    color: c.$cool-gray;
-    cursor: pointer;
-    transition: v.$main-transition;
-  }
+  order: 2;
 
   &::after {
     position: absolute;
@@ -81,17 +85,43 @@
     height: v.$switch-dot-size;
     width: v.$switch-dot-size;
     top: 0.2rem;
-    left: 10%;
+    margin-inline: v.$switch-dot-gap;
     background: c.$white;
     border-radius: 50%;
     transition: v.$main-transition;
   }
+  &:hover {
+    opacity: 0.8;
+  }
+
+  &__button {
+    cursor: pointer;
+    background: transparent;
+    border: none;
+    font-family: inherit;
+    font-size: inherit;
+    font-weight: bold;
+    padding: 0.5rem;
+    color: c.$cool-gray;
+    transition: v.$main-transition;
+    &[aria-checked="false"]:hover {
+      opacity: 0.8;
+    }
+  }
+  &__button[aria-checked="true"] {
+    color: c.$marine-blue;
+  }
+  &__button--monthly {
+    order: 1;
+  }
+  &__button--yearly {
+    order: 3;
+  }
+}
+.switch__button:disabled {
+  cursor: default;
 }
 
-.switch__input--yearly:checked ~ .switch::after {
-  translate: calc((2.8rem * 0.8) - v.$switch-dot-size);
-}
-
-.switch__input:checked + .switch__label {
-  color: c.$marine-blue;
+.switch__button--yearly[aria-checked="true"] ~ .switch:after {
+  translate: calc(v.$switch-width - v.$switch-dot-size - (v.$switch-dot-gap * 2));
 }

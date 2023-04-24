@@ -33,8 +33,12 @@ export default function App() {
         width={width}
         // headerText={mainContainerText.personalInfo.headerText}
         // instructiveText={mainContainerText.personalInfo.instructiveText}
-        headerText={mainContainerText.selectPlan.headerText}
-        instructiveText={mainContainerText.selectPlan.instructiveText}
+        // headerText={mainContainerText.selectPlan.headerText}
+        // instructiveText={mainContainerText.selectPlan.instructiveText}
+        headerText={mainContainerText.pickAddOns.headerText}
+        instructiveText={mainContainerText.pickAddOns.instructiveText}
+        // headerText={mainContainerText.finishingUp.headerText}
+        // instructiveText={mainContainerText.finishingUp.instructiveText}
       />
 
       {width <= 768 && (

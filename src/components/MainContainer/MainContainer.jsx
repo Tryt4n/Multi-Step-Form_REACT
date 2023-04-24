@@ -1,8 +1,14 @@
+import { useState } from "react";
+
 // import PersonalInfo from "../PersonalInfo/personalInfo";
 import SelectPlan from "../SelectPlan/SelectPlan";
 import StepsNavigation from "../StepsNavigation/StepsNavigation";
+// import PickAddOns from "../PickAddOns/PickAddOns";
 
 export default function MainContainer({ width, headerText, instructiveText }) {
+  const [isMonthlyChecked, setIsMonthlyChecked] = useState(true);
+  const [activePlanCard, setPlanActiveCard] = useState("arcade");
+
   return (
     <article className="main-container">
       <header className="main-container__text-container">
@@ -11,7 +17,13 @@ export default function MainContainer({ width, headerText, instructiveText }) {
       </header>
 
       {/* <PersonalInfo /> */}
-      <SelectPlan />
+      <SelectPlan
+        isMonthlyChecked={isMonthlyChecked}
+        setIsMonthlyChecked={setIsMonthlyChecked}
+        activePlanCard={activePlanCard}
+        setPlanActiveCard={setPlanActiveCard}
+      />
+      {/* <PickAddOns isMonthlyChecked={isMonthlyChecked} /> */}
 
       {width >= 768 && <StepsNavigation />}
     </article>

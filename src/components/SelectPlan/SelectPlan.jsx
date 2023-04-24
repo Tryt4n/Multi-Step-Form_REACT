@@ -77,71 +77,99 @@ const proSvg = (
   </svg>
 );
 
-export default function SelectPlan() {
+const cards = {
+  ARCADE: "arcade",
+  ADVANCED: "advanced",
+  PRO: "pro",
+};
+
+export default function SelectPlan({
+  isMonthlyChecked,
+  setIsMonthlyChecked,
+  activePlanCard,
+  setPlanActiveCard,
+}) {
+  function handleActiveCard(cardType) {
+    setPlanActiveCard(cardType);
+  }
+
+  function handleMonthlyClick() {
+    setIsMonthlyChecked(true);
+  }
+  function handleYearlyClick() {
+    setIsMonthlyChecked(false);
+  }
+  function handleSwitch() {
+    setIsMonthlyChecked(!isMonthlyChecked);
+  }
+
   return (
     <>
       <div className="cards-container">
-        <button className="card active">
+        <button
+          className={activePlanCard === cards.ARCADE ? "card active" : "card"}
+          onClick={() => handleActiveCard(cards.ARCADE)}
+        >
           {arcadeSvg}
           <div className="card__text-wrapper">
             <h3 className="card__header">Arcade</h3>
-            <p className="card__price">$9/mo</p>
+            <p className="card__price">{isMonthlyChecked ? "$9/mo" : "$90/yr"}</p>
+            {!isMonthlyChecked && <em className="card__free-info">2 months free</em>}
           </div>
         </button>
-        <button className="card">
+        <button
+          className={activePlanCard === cards.ADVANCED ? "card active" : "card"}
+          onClick={() => handleActiveCard(cards.ADVANCED)}
+        >
           {advancedSvg}
           <div className="card__text-wrapper">
             <h3 className="card__header">Advanced</h3>
-            <p className="card__price">$12/mo</p>
+            <p className="card__price">{isMonthlyChecked ? "$12/mo" : "$120/yr"}</p>
+            {!isMonthlyChecked && <em className="card__free-info">2 months free</em>}
           </div>
         </button>
-        <button className="card">
+        <button
+          className={activePlanCard === cards.PRO ? "card active" : "card"}
+          onClick={() => handleActiveCard(cards.PRO)}
+        >
           {proSvg}
           <div className="card__text-wrapper">
             <h3 className="card__header">Pro</h3>
-            <p className="card__price">$15/mo</p>
+            <p className="card__price">{isMonthlyChecked ? "$15/mo" : "$150/yr"}</p>
+            {!isMonthlyChecked && <em className="card__free-info">2 months free</em>}
           </div>
         </button>
       </div>
 
-      <form
-        className="switch-container"
-        onSubmit={(e) => e.preventDefault()}
-      >
-        <input
-          type="radio"
-          name="plan-switch"
-          id="monthly"
-          className="switch__input switch__input--monthly visually-hidden"
-          defaultChecked
-          style={{ order: "2" }}
-        />
-        <label
-          htmlFor="monthly"
-          className="switch__label"
-          style={{ order: "1" }}
+      <div className="switch-container">
+        <button
+          type="button"
+          role="switch"
+          className="switch__button switch__button--monthly"
+          aria-label="Select monthly plan"
+          aria-checked={isMonthlyChecked}
+          onClick={handleMonthlyClick}
+          disabled={isMonthlyChecked}
         >
           Monthly
-        </label>
-        <input
-          type="radio"
-          name="plan-switch"
-          id="yearly"
-          className="switch__input switch__input--yearly visually-hidden"
-          style={{ order: "5" }}
-        />
-        <label
-          htmlFor="yearly"
-          className="switch__label"
-          style={{ order: "4" }}
+        </button>
+        <button
+          type="button"
+          role="switch"
+          className="switch__button switch__button--yearly"
+          aria-label="Select yearly plan"
+          aria-checked={!isMonthlyChecked}
+          onClick={handleYearlyClick}
+          disabled={!isMonthlyChecked}
         >
           Yearly
-        </label>
+        </button>
         <span
           className="switch"
-          style={{ order: "3" }}
+          aria-hidden="true"
+          onClick={handleSwitch}
         ></span>
-      </form>
+      </div>
     </>
   );
 }
