@@ -1,0 +1,34 @@
+{
+  "plans": {
+    "ARCADE": {
+      "id": "arcade",
+      "monthly_price": 9,
+      "yearly_price": 90
+    },
+    "ADVANCED": {
+      "id": "advanced",
+      "monthly_price": 12,
+      "yearly_price": 120
+    },
+    "PRO": {
+      "id": "pro",
+      "monthly_price": 15,
+      "yearly_price": 150
+    }
+  },
+  "addOns": {
+    "ONLINE_SERVICES": {
+      "id": "online service",
+      "monthly_price": 1,
+      "yearly_price": 10
+    },
+    "LARGER_STORAGE": {
+      "monthly_price": 2,
+      "yearly_price": 20
+    },
+    "CUSTOMIZABLE_PROFILE": {
+      "monthly_price": 2,
+      "yearly_price": 20
+    }
+  }
+}

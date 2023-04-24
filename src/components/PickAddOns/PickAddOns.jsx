@@ -1,18 +1,17 @@
-// import { useState } from "react";
+import { useRef } from "react";
 
-// const cards = {
-//   ONLINE_SERVICES: "online",
-//   STORAGE: "storage",
-//   CUSTOMIZATION: "customization",
-// };
+export default function PickAddOns({ isMonthlyChecked, addOnsState }) {
+  const onlineRef = useRef(null);
+  const storageRef = useRef(null);
+  const customizableRef = useRef(null);
 
-export default function PickAddOns({ isMonthlyChecked }) {
-  //   const [activeAddOns, setActiveAddOns] = useState(false);
-
-  //   function handleCheckbox(cardType) {
-  //     if (cardType)
-  //     setActiveAddOns(!activeAddOns);
-  //   }
+  function handleCheckboxChange(ref) {
+    if (ref.current.checked) {
+      ref.current.parentNode.classList.add("active");
+    } else {
+      ref.current.parentNode.classList.remove("active");
+    }
+  }
 
   return (
     <form
@@ -28,8 +27,11 @@ export default function PickAddOns({ isMonthlyChecked }) {
           name="online-service"
           id="online-service"
           className="pick-add-ons-card__checkbox"
-          //   checked={activeAddOns}
-          //   onClick={handleCheckbox}
+          ref={onlineRef}
+          onChange={() => {
+            handleCheckboxChange(onlineRef);
+            addOnsState.setOnlineService(!addOnsState.onlineService);
+          }}
         />
         <div className="pick-add-ons-card__label-container">
           <h2 className="pick-add-ons-card__header">Online service</h2>
@@ -47,6 +49,11 @@ export default function PickAddOns({ isMonthlyChecked }) {
           name="larger-storage"
           id="larger-storage"
           className="pick-add-ons-card__checkbox"
+          ref={storageRef}
+          onChange={() => {
+            handleCheckboxChange(storageRef);
+            addOnsState.setLargerStorage(!addOnsState.largerStorage);
+          }}
         />
         <div className="pick-add-ons-card__label-container">
           <h2 className="pick-add-ons-card__header">Larger storage</h2>
@@ -64,6 +71,11 @@ export default function PickAddOns({ isMonthlyChecked }) {
           name="customizable-profile"
           id="customizable-profile"
           className="pick-add-ons-card__checkbox"
+          ref={customizableRef}
+          onChange={() => {
+            handleCheckboxChange(customizableRef);
+            addOnsState.setCustomizableProfile(!addOnsState.customizableProfile);
+          }}
         />
         <div className="pick-add-ons-card__label-container">
           <h2 className="pick-add-ons-card__header">Customizable profile</h2>

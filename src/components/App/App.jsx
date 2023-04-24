@@ -35,10 +35,10 @@ export default function App() {
         // instructiveText={mainContainerText.personalInfo.instructiveText}
         // headerText={mainContainerText.selectPlan.headerText}
         // instructiveText={mainContainerText.selectPlan.instructiveText}
-        headerText={mainContainerText.pickAddOns.headerText}
-        instructiveText={mainContainerText.pickAddOns.instructiveText}
-        // headerText={mainContainerText.finishingUp.headerText}
-        // instructiveText={mainContainerText.finishingUp.instructiveText}
+        // headerText={mainContainerText.pickAddOns.headerText}
+        // instructiveText={mainContainerText.pickAddOns.instructiveText}
+        headerText={mainContainerText.finishingUp.headerText}
+        instructiveText={mainContainerText.finishingUp.instructiveText}
       />
 
       {width <= 768 && (

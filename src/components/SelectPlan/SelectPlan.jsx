@@ -77,17 +77,12 @@ const proSvg = (
   </svg>
 );
 
-const cards = {
-  ARCADE: "arcade",
-  ADVANCED: "advanced",
-  PRO: "pro",
-};
-
 export default function SelectPlan({
   isMonthlyChecked,
   setIsMonthlyChecked,
   activePlanCard,
   setPlanActiveCard,
+  plans,
 }) {
   function handleActiveCard(cardType) {
     setPlanActiveCard(cardType);
@@ -107,35 +102,47 @@ export default function SelectPlan({
     <>
       <div className="cards-container">
         <button
-          className={activePlanCard === cards.ARCADE ? "card active" : "card"}
-          onClick={() => handleActiveCard(cards.ARCADE)}
+          className={activePlanCard === plans.ARCADE.id ? "card active" : "card"}
+          onClick={() => handleActiveCard(plans.ARCADE.id)}
         >
           {arcadeSvg}
           <div className="card__text-wrapper">
             <h2 className="card__header">Arcade</h2>
-            <p className="card__price">{isMonthlyChecked ? "$9/mo" : "$90/yr"}</p>
+            <p className="card__price">
+              {isMonthlyChecked
+                ? `$${plans.ARCADE.monthly_price}/mo`
+                : `$${plans.ARCADE.yearly_price}/yr`}
+            </p>
             {!isMonthlyChecked && <em className="card__free-info">2 months free</em>}
           </div>
         </button>
         <button
-          className={activePlanCard === cards.ADVANCED ? "card active" : "card"}
-          onClick={() => handleActiveCard(cards.ADVANCED)}
+          className={activePlanCard === plans.ADVANCED.id ? "card active" : "card"}
+          onClick={() => handleActiveCard(plans.ADVANCED.id)}
         >
           {advancedSvg}
           <div className="card__text-wrapper">
             <h2 className="card__header">Advanced</h2>
-            <p className="card__price">{isMonthlyChecked ? "$12/mo" : "$120/yr"}</p>
+            <p className="card__price">
+              {isMonthlyChecked
+                ? `$${plans.ADVANCED.monthly_price}/mo`
+                : `$${plans.ADVANCED.yearly_price}/yr`}
+            </p>
             {!isMonthlyChecked && <em className="card__free-info">2 months free</em>}
           </div>
         </button>
         <button
-          className={activePlanCard === cards.PRO ? "card active" : "card"}
-          onClick={() => handleActiveCard(cards.PRO)}
+          className={activePlanCard === plans.PRO.id ? "card active" : "card"}
+          onClick={() => handleActiveCard(plans.PRO.id)}
         >
           {proSvg}
           <div className="card__text-wrapper">
             <h2 className="card__header">Pro</h2>
-            <p className="card__price">{isMonthlyChecked ? "$15/mo" : "$150/yr"}</p>
+            <p className="card__price">
+              {isMonthlyChecked
+                ? `$${plans.PRO.monthly_price}/mo`
+                : `$${plans.PRO.yearly_price}/yr`}
+            </p>
             {!isMonthlyChecked && <em className="card__free-info">2 months free</em>}
           </div>
         </button>
