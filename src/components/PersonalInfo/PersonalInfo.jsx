@@ -1,4 +1,19 @@
-export default function PersonalInfo() {
+import { useEffect, useRef } from "react";
+import { isAlpha } from "validator";
+
+export default function PersonalInfo({ name, setName, email, setEmail, phone, setPhone }) {
+  const nameRef = useRef();
+  const emailRef = useRef();
+  const phoneRef = useRef();
+
+  useEffect(() => {
+    // console.log(nameRef.current.value);
+  }, [name, setName, nameRef]);
+
+  function validateName(name) {
+    return isAlpha(name.replace(/\s+/g), "pl-PL");
+  }
+
   return (
     <>
       <form
@@ -25,6 +40,15 @@ export default function PersonalInfo() {
               id="name"
               required
               placeholder="e.g. Stephen King"
+              pattern="[a-zA-Z\-]+"
+              ref={nameRef}
+              value={name}
+              // onChange={(e) => setName(e.target.value)}
+              onChange={(e) => {
+                if (validateName(e.target.value)) {
+                  setName(e.target.value);
+                }
+              }}
             />
           </div>
 
@@ -47,6 +71,9 @@ export default function PersonalInfo() {
               id="email"
               required
               placeholder="e.g. stephenking@lorem.com"
+              ref={emailRef}
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
             />
           </div>
           <div>
@@ -68,6 +95,9 @@ export default function PersonalInfo() {
               id="phone"
               required
               placeholder="e.g. +1 234 567 890"
+              ref={phoneRef}
+              value={phone}
+              onChange={(e) => setPhone(e.target.value)}
             />
           </div>
         </div>

@@ -1,5 +1,6 @@
 @use "../../abstracts/colors" as c;
 @use "../../abstracts/variables" as v;
+@use "../../base/functions" as func;
 
 .confirmation {
   display: grid;
@@ -8,14 +9,21 @@
   gap: 1.5rem;
   text-align: center;
   height: 100%;
+  @media (width <= func.rem(768)) {
+    padding-block: 3rem;
+  }
 
   &__header {
     color: c.$marine-blue;
   }
 
   &__text {
-    color: c.$cool-gray;
     max-width: 50ch;
+    color: c.$cool-gray;
+    line-height: 1.5em;
+    @media (width <= func.rem(768)) {
+      max-width: 33ch;
+    }
     a {
       transition: v.$main-transition;
       outline-offset: 0;

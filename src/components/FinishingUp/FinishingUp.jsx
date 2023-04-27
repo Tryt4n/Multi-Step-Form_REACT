@@ -4,6 +4,7 @@ export default function FinishingUp({
   addOnsProps,
   plans,
   addOns,
+  setCurrentStep,
 }) {
   const selectedPlan = Object.values(plans).find((plan) => plan.id === activePlanCard);
   const planPrice = isMonthlyChecked ? selectedPlan?.monthly_price : selectedPlan?.yearly_price;
@@ -39,10 +40,10 @@ export default function FinishingUp({
             <h2 className="plan__name">
               {activePlanCard} ({isMonthlyChecked ? "Monthly" : "Yearly"})
             </h2>
-            {/* //! TODO LINK */}
             <a
               href="#"
               className="plan__change"
+              onClick={() => setCurrentStep(2)}
             >
               Change
             </a>

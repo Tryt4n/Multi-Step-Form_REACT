@@ -16,8 +16,17 @@ export default function MainContainer({
   currentStep,
   setCurrentStep,
 }) {
+  //* Personal Info *//
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+
+  //* Monthly or Yearly plan *//
   const [isMonthlyChecked, setIsMonthlyChecked] = useState(true);
+
+  //* Active Plan *//
   const [activePlanCard, setPlanActiveCard] = useState("arcade");
+
   //* ADD-ONS *//
   const [onlineService, setOnlineService] = useState(false);
   const [largerStorage, setLargerStorage] = useState(false);
@@ -43,7 +52,16 @@ export default function MainContainer({
         </header>
       )}
 
-      {currentStep === 1 && <PersonalInfo />}
+      {currentStep === 1 && (
+        <PersonalInfo
+          name={name}
+          setName={setName}
+          email={email}
+          setEmail={setEmail}
+          phone={phone}
+          setPhone={setPhone}
+        />
+      )}
 
       {currentStep === 2 && (
         <SelectPlan
@@ -69,6 +87,7 @@ export default function MainContainer({
           addOnsProps={pickAddOnsProps}
           plans={plans}
           addOns={addOns}
+          setCurrentStep={setCurrentStep}
         />
       )}
 

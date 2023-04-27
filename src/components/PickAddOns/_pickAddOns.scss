@@ -28,6 +28,10 @@
   &.active {
     background: c.$magnolia;
     border-color: c.$purplish-blue;
+    transition: v.$main-transition;
+    &:where(:hover, :focus-within) {
+      opacity: 0.75;
+    }
   }
 
   &__checkbox {
@@ -48,7 +52,7 @@
       transition: v.$main-transition;
     }
     &::after {
-      content: url("./images/icon-checkmark.svg");
+      content: url("/images/icon-checkmark.svg");
       position: absolute;
       width: v.$checkbox-size;
       height: v.$checkbox-size;

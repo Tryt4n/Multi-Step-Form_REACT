@@ -39,6 +39,7 @@
   font-weight: normal;
   font-size: 1rem;
   transition: v.$main-transition;
+  outline-offset: 0.1em;
   &:where(:hover, :focus-visible) {
     color: c.$purplish-blue;
   }
