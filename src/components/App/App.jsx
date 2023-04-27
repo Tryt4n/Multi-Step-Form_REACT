@@ -1,3 +1,4 @@
+import { useState } from "react";
 import useWindowSize from "../../hooks/useWindowSize";
 
 import StepSection from "../StepSection/StepSection";
@@ -25,25 +26,44 @@ const mainContainerText = {
 
 export default function App() {
   const { width } = useWindowSize();
+  const [currentStep, setCurrentStep] = useState(1);
+
+  let headerText, instructiveText;
+  if (currentStep === 1) {
+    headerText = mainContainerText.personalInfo.headerText;
+    instructiveText = mainContainerText.personalInfo.instructiveText;
+  } else if (currentStep === 2) {
+    headerText = mainContainerText.selectPlan.headerText;
+    instructiveText = mainContainerText.selectPlan.instructiveText;
+  } else if (currentStep === 3) {
+    headerText = mainContainerText.pickAddOns.headerText;
+    instructiveText = mainContainerText.pickAddOns.instructiveText;
+  } else if (currentStep === 4) {
+    headerText = mainContainerText.finishingUp.headerText;
+    instructiveText = mainContainerText.finishingUp.instructiveText;
+  }
+
   return (
     <section className="form-block">
-      <StepSection width={width} />
+      <StepSection
+        width={width}
+        currentStep={currentStep}
+      />
 
       <MainContainer
         width={width}
-        // headerText={mainContainerText.personalInfo.headerText}
-        // instructiveText={mainContainerText.personalInfo.instructiveText}
-        // headerText={mainContainerText.selectPlan.headerText}
-        // instructiveText={mainContainerText.selectPlan.instructiveText}
-        // headerText={mainContainerText.pickAddOns.headerText}
-        // instructiveText={mainContainerText.pickAddOns.instructiveText}
-        headerText={mainContainerText.finishingUp.headerText}
-        instructiveText={mainContainerText.finishingUp.instructiveText}
+        currentStep={currentStep}
+        setCurrentStep={setCurrentStep}
+        headerText={headerText}
+        instructiveText={instructiveText}
       />
 
       {width <= 768 && (
         <footer>
-          <StepsNavigation />
+          <StepsNavigation
+            currentStep={currentStep}
+            setCurrentStep={setCurrentStep}
+          />
         </footer>
       )}
     </section>

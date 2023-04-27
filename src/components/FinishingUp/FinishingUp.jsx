@@ -33,51 +33,58 @@ export default function FinishingUp({
 
   return (
     <>
-      <div>
-        <div>
+      <section className="summary-container">
+        <header className="summary-container__header">
           <div>
-            <h2>
+            <h2 className="plan__name">
               {activePlanCard} ({isMonthlyChecked ? "Monthly" : "Yearly"})
             </h2>
             {/* //! TODO LINK */}
-            <a href="#">Change</a>
+            <a
+              href="#"
+              className="plan__change"
+            >
+              Change
+            </a>
           </div>
           <p>
             ${planPrice}/{isMonthlyChecked ? "mo" : "yr"}
           </p>
-        </div>
+        </header>
 
         {addOnsProps.onlineService ||
         addOnsProps.largerStorage ||
         addOnsProps.customizableProfile ? (
-          <hr />
+          <hr className="summary-container__break" />
         ) : (
           ""
         )}
 
-        {addOnsProps.onlineService && (
-          <div>
-            <p>Online service</p>
-            <em>+${isMonthlyChecked ? "1/mo" : "10/yr"}</em>
-          </div>
-        )}
-        {addOnsProps.largerStorage && (
-          <div>
-            <p>Larger storage</p>
-            <em>+${isMonthlyChecked ? "2/mo" : "20/yr"}</em>
-          </div>
-        )}
-        {addOnsProps.customizableProfile && (
-          <div>
-            <p>Customizable profile</p>
-            <em>+${isMonthlyChecked ? "2/mo" : "20/yr"}</em>
-          </div>
-        )}
-      </div>
+        <ul className="add-ons-list">
+          {addOnsProps.onlineService && (
+            <li className="add-ons-list__list-item">
+              <p className="add-ons-list__add-on-name">Online service</p>
+              <em className="add-ons-list__price">+${isMonthlyChecked ? "1/mo" : "10/yr"}</em>
+            </li>
+          )}
+          {addOnsProps.largerStorage && (
+            <li className="add-ons-list__list-item">
+              <p className="add-ons-list__add-on-name">Larger storage</p>
+              <em className="add-ons-list__price">+${isMonthlyChecked ? "2/mo" : "20/yr"}</em>
+            </li>
+          )}
+          {addOnsProps.customizableProfile && (
+            <li className="add-ons-list__list-item">
+              <p className="add-ons-list__add-on-name">Customizable profile</p>
+              <em className="add-ons-list__price">+${isMonthlyChecked ? "2/mo" : "20/yr"}</em>
+            </li>
+          )}
+        </ul>
+      </section>
 
-      <div>
-        <p>Total (per {isMonthlyChecked ? "month" : "year"})</p>
-        <strong>
+      <div className="summary">
+        <p className="summary__text">Total (per {isMonthlyChecked ? "month" : "year"})</p>
+        <strong className="summary__total-price">
           +${totalPrice}/{isMonthlyChecked ? "mo" : "yr"}
         </strong>
       </div>

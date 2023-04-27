@@ -1,0 +1,81 @@
+@use "../../base/functions" as func;
+@use "../../abstracts/colors" as c;
+@use "../../abstracts/variables" as v;
+@use "../../abstracts/mixins" as *;
+
+.summary-container {
+  background: c.$magnolia;
+  border-radius: 0.5rem;
+  padding: 1.5rem;
+  color: c.$cool-gray;
+
+  &__header {
+    color: c.$marine-blue;
+    font-weight: bold;
+    @include flex(row, space-between, center);
+    gap: 1rem;
+    font-size: 1.2rem;
+    @media (width <= func.rem(768)) {
+      font-size: 1.1rem;
+    }
+  }
+
+  &__break {
+    border: none;
+    border-bottom: 1px solid c.$light-gray;
+    border-radius: 999px;
+    margin-block: 1.5rem;
+  }
+}
+
+.plan__name {
+  text-transform: capitalize;
+  font-size: inherit;
+}
+
+.plan__change {
+  color: c.$cool-gray;
+  text-decoration: underline;
+  font-weight: normal;
+  font-size: 1rem;
+  transition: v.$main-transition;
+  &:where(:hover, :focus-visible) {
+    color: c.$purplish-blue;
+  }
+}
+
+.add-ons-list {
+  @include flex(column);
+  gap: 1.5rem;
+
+  &__list-item {
+    @include flex(row, space-between, center);
+    gap: 1rem;
+  }
+
+  &__add-on-name {
+    text-transform: capitalize;
+  }
+
+  &__price {
+    color: c.$marine-blue;
+  }
+}
+
+.summary {
+  @include flex(row, space-between, center);
+  gap: 1rem;
+  padding: 1.5rem;
+
+  &__text {
+    color: c.$cool-gray;
+  }
+
+  &__total-price {
+    color: c.$purplish-blue;
+    font-size: 1.35rem;
+    @media (width <= func.rem(768)) {
+      font-size: 1.1rem;
+    }
+  }
+}

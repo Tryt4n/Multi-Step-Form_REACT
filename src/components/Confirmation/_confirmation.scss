@@ -1,0 +1,27 @@
+@use "../../abstracts/colors" as c;
+@use "../../abstracts/variables" as v;
+
+.confirmation {
+  display: grid;
+  place-content: center;
+  place-items: center;
+  gap: 1.5rem;
+  text-align: center;
+  height: 100%;
+
+  &__header {
+    color: c.$marine-blue;
+  }
+
+  &__text {
+    color: c.$cool-gray;
+    max-width: 50ch;
+    a {
+      transition: v.$main-transition;
+      outline-offset: 0;
+    }
+    & a:where(:hover, :focus-visible) {
+      color: c.$marine-blue;
+    }
+  }
+}

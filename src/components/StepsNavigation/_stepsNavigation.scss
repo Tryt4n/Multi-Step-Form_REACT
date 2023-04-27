@@ -31,12 +31,13 @@
     font-family: inherit;
     font-size: inherit;
     border-radius: 0.25em;
-    padding: 0.5em 1em;
+    padding: 0.75em 1.5em;
 
     &--next {
       background: c.$marine-blue;
       color: c.$magnolia;
       outline-offset: 0.25em;
+      align-self: flex-end;
       &:where(:hover, :focus-visible) {
         opacity: 0.85;
       }
@@ -46,6 +47,13 @@
       translate: -0.5em;
       &:where(:hover, :focus-visible) {
         color: c.$marine-blue;
+      }
+    }
+    &--confirm {
+      background: c.$purplish-blue;
+      color: c.$white;
+      &:where(:hover, :focus-visible) {
+        opacity: 0.6;
       }
     }
   }

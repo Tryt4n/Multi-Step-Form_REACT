@@ -5,10 +5,17 @@ import SelectPlan from "../SelectPlan/SelectPlan";
 import StepsNavigation from "../StepsNavigation/StepsNavigation";
 import PickAddOns from "../PickAddOns/PickAddOns";
 import FinishingUp from "../FinishingUp/FinishingUp";
+import Confirmation from "../Confirmation/Confirmation";
 
 import { plans, addOns } from "../../data.json";
 
-export default function MainContainer({ width, headerText, instructiveText }) {
+export default function MainContainer({
+  width,
+  headerText,
+  instructiveText,
+  currentStep,
+  setCurrentStep,
+}) {
   const [isMonthlyChecked, setIsMonthlyChecked] = useState(true);
   const [activePlanCard, setPlanActiveCard] = useState("arcade");
   //* ADD-ONS *//
@@ -27,32 +34,52 @@ export default function MainContainer({ width, headerText, instructiveText }) {
 
   return (
     <article className="main-container">
-      <header className="main-container__text-container">
-        <h1 className="main-container__header-text">{headerText}</h1>
-        <p className="main-container__instructive-text">{instructiveText}</p>
-      </header>
+      {currentStep > 4 ? (
+        ""
+      ) : (
+        <header className="main-container__text-container">
+          <h1 className="main-container__header-text">{headerText}</h1>
+          <p className="main-container__instructive-text">{instructiveText}</p>
+        </header>
+      )}
 
-      {/* <PersonalInfo /> */}
-      {/* <SelectPlan
-        isMonthlyChecked={isMonthlyChecked}
-        setIsMonthlyChecked={setIsMonthlyChecked}
-        activePlanCard={activePlanCard}
-        setPlanActiveCard={setPlanActiveCard}
-        plans={plans}
-      /> */}
-      {/* <PickAddOns
-        isMonthlyChecked={isMonthlyChecked}
-        addOnsState={pickAddOnsProps}
-      /> */}
-      <FinishingUp
-        isMonthlyChecked={isMonthlyChecked}
-        activePlanCard={activePlanCard}
-        addOnsProps={pickAddOnsProps}
-        plans={plans}
-        addOns={addOns}
-      />
+      {currentStep === 1 && <PersonalInfo />}
 
-      {width >= 768 && <StepsNavigation />}
+      {currentStep === 2 && (
+        <SelectPlan
+          isMonthlyChecked={isMonthlyChecked}
+          setIsMonthlyChecked={setIsMonthlyChecked}
+          activePlanCard={activePlanCard}
+          setPlanActiveCard={setPlanActiveCard}
+          plans={plans}
+        />
+      )}
+
+      {currentStep === 3 && (
+        <PickAddOns
+          isMonthlyChecked={isMonthlyChecked}
+          addOnsState={pickAddOnsProps}
+        />
+      )}
+
+      {currentStep === 4 && (
+        <FinishingUp
+          isMonthlyChecked={isMonthlyChecked}
+          activePlanCard={activePlanCard}
+          addOnsProps={pickAddOnsProps}
+          plans={plans}
+          addOns={addOns}
+        />
+      )}
+
+      {currentStep === 0 || (currentStep > 4 && <Confirmation />)}
+
+      {width > 768 && (
+        <StepsNavigation
+          currentStep={currentStep}
+          setCurrentStep={setCurrentStep}
+        />
+      )}
     </article>
   );
 }

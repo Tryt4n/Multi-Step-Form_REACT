@@ -5,11 +5,15 @@
 
 .main-container {
   @include flex(column);
+
   @media (width > func.rem(768)) {
     height: v.$desktop-form-block-size;
     width: 100%;
-    margin-inline: 3rem;
+    margin-inline: 1.5rem;
     padding: v.$desktop-outside-gap;
+  }
+  @media (width > func.rem(1024)) {
+    margin-inline: 3rem;
   }
   @media (width <= func.rem(768)) {
     background: c.$white;
