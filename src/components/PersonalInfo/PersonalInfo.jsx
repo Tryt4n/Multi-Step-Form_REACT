@@ -1,18 +1,9 @@
-import { useEffect, useRef } from "react";
-import { isAlpha } from "validator";
+import { useRef } from "react";
 
 export default function PersonalInfo({ name, setName, email, setEmail, phone, setPhone }) {
   const nameRef = useRef();
   const emailRef = useRef();
   const phoneRef = useRef();
-
-  useEffect(() => {
-    // console.log(nameRef.current.value);
-  }, [name, setName, nameRef]);
-
-  function validateName(name) {
-    return isAlpha(name.replace(/\s+/g), "pl-PL");
-  }
 
   return (
     <>
@@ -40,13 +31,21 @@ export default function PersonalInfo({ name, setName, email, setEmail, phone, se
               id="name"
               required
               placeholder="e.g. Stephen King"
-              pattern="[a-zA-Z\-]+"
+              maxLength={40}
               ref={nameRef}
               value={name}
-              // onChange={(e) => setName(e.target.value)}
               onChange={(e) => {
-                if (validateName(e.target.value)) {
-                  setName(e.target.value);
+                let input = e.target.value;
+                //* Validation: first letter of any word is capitalize, any other letters are lowercase *//
+                input = input.toLowerCase().replace(/(?:^|\s|[-])\S/g, (a) => a.toUpperCase());
+                if (
+                  /^[a-zA-Z\s-]*$/.test(input) && //* Only letters, spaces and dashes
+                  /^(?!\s)(?!-)/.test(input) && //* No space or dash at the beginning
+                  !/\s{2,}/.test(input) && //* No more than one space in a row
+                  !/-{2,}/.test(input) && //* No more than one dash in a row
+                  !/\s[-]|[^\s-][-]\s/.test(input) //* No spaces or dashes next to each other
+                ) {
+                  setName(input);
                 }
               }}
             />
@@ -73,7 +72,26 @@ export default function PersonalInfo({ name, setName, email, setEmail, phone, se
               placeholder="e.g. stephenking@lorem.com"
               ref={emailRef}
               value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              maxLength={40}
+              onChange={(e) => {
+                let input = e.target.value;
+                //* Removes all characters other than letters, numbers, "_", "-", ".", "@"
+                input = input.replace(/[^a-zA-Z0-9_\-\.@]/g, "");
+                //* Removes the characters "_", "-", ".", "@" from the beginning of the entered value
+                input = input.replace(/^[_\-.@]+/, "");
+                //* remove occurrences of "_", "-", ".", "@" next to each other
+                input = input.replace(/[_\-.@]+[_\-.@]+/g, (match) => match.charAt(0));
+                //* Checks if "@" occurs only once
+                let atIndex = input.indexOf("@");
+                if (atIndex !== -1) {
+                  let afterAtIndex = input.substring(atIndex + 1);
+                  if (afterAtIndex.indexOf("@") !== -1) {
+                    //* Does not let enter the "@" a second time
+                    input = input.substring(0, atIndex + 1) + afterAtIndex.replace(/[@]/g, "");
+                  }
+                }
+                setEmail(input);
+              }}
             />
           </div>
           <div>
@@ -97,7 +115,31 @@ export default function PersonalInfo({ name, setName, email, setEmail, phone, se
               placeholder="e.g. +1 234 567 890"
               ref={phoneRef}
               value={phone}
-              onChange={(e) => setPhone(e.target.value)}
+              maxLength={11}
+              onChange={(e) => {
+                let input = e.target.value;
+                //* Removes all characters that are not numbers or "+" or "-" or space
+                input = input.replace(/[^0-9+\-\s]/g, "");
+                //* Removes spaces from the beginning of the entered value
+                input = input.trimStart();
+                //* Removes the "-" sign from the beginning of the entered value
+                input = input.replace(/^[-]/, "");
+                //* Removes spaces or dashes that are next to each other, and also checks whether two of the same characters ("-" or space) are not next to each other
+                input = input
+                  .replace(/[\s-]+/g, (match) => {
+                    return match.charAt(0);
+                  })
+                  .replace(/([- ])\1+/g, "$1");
+                //* Removes all occurrences of "+" except the first character
+                input = input.replace(/\+/g, (match, offset) => {
+                  return offset === 0 ? "+" : "";
+                });
+                //* Checks if "+" is only at the beginning
+                if (input.indexOf("+") !== 0) {
+                  input = input.replace(/[+]/g, "");
+                }
+                setPhone(input);
+              }}
             />
           </div>
         </div>
