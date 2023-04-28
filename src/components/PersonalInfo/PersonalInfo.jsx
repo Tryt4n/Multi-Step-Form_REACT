@@ -1,9 +1,24 @@
-import { useRef } from "react";
+import { useRef, useEffect } from "react";
 
-export default function PersonalInfo({ name, setName, email, setEmail, phone, setPhone }) {
+export default function PersonalInfo({
+  name,
+  setName,
+  email,
+  setEmail,
+  phone,
+  setPhone,
+  isNameValid,
+  isEmailValid,
+  isPhoneValid,
+  isValid,
+}) {
   const nameRef = useRef();
   const emailRef = useRef();
   const phoneRef = useRef();
+
+  useEffect(() => {
+    nameRef.current.focus();
+  }, []);
 
   return (
     <>
@@ -20,9 +35,16 @@ export default function PersonalInfo({ name, setName, email, setEmail, phone, se
               >
                 Name
               </label>
-              <em className="personal-info-container__label-warning-info">
-                This filed is required
-              </em>
+              {!isValid && name === "" ? (
+                <em className="personal-info-container__label-warning-info">
+                  This filed is required
+                </em>
+              ) : undefined}
+              {!isValid && !isNameValid && name !== "" ? (
+                <em className="personal-info-container__label-warning-info">
+                  Please enter your full name
+                </em>
+              ) : undefined}
             </div>
             <input
               className="personal-info-container__input"
@@ -59,9 +81,16 @@ export default function PersonalInfo({ name, setName, email, setEmail, phone, se
               >
                 Email Address
               </label>
-              <em className="personal-info-container__label-warning-info">
-                This filed is required
-              </em>
+              {!isValid && email === "" ? (
+                <em className="personal-info-container__label-warning-info">
+                  This filed is required
+                </em>
+              ) : undefined}
+              {!isValid && !isEmailValid && email !== "" ? (
+                <em className="personal-info-container__label-warning-info">
+                  Please enter a valid email
+                </em>
+              ) : undefined}
             </div>
             <input
               className="personal-info-container__input"
@@ -102,9 +131,16 @@ export default function PersonalInfo({ name, setName, email, setEmail, phone, se
               >
                 Phone
               </label>
-              <em className="personal-info-container__label-warning-info">
-                This filed is required
-              </em>
+              {!isValid && phone === "" ? (
+                <em className="personal-info-container__label-warning-info">
+                  This filed is required
+                </em>
+              ) : undefined}
+              {!isValid && !isPhoneValid && phone !== "" ? (
+                <em className="personal-info-container__label-warning-info">
+                  Please enter a valid phone number
+                </em>
+              ) : undefined}
             </div>
             <input
               className="personal-info-container__input"

@@ -15,12 +15,23 @@ export default function MainContainer({
   instructiveText,
   currentStep,
   setCurrentStep,
+  //* Personal Info
+  name,
+  setName,
+  email,
+  setEmail,
+  phone,
+  setPhone,
+  isNameValid,
+  setIsNameValid,
+  isEmailValid,
+  setIsEmailValid,
+  isPhoneValid,
+  setIsPhoneValid,
+  isValid,
+  setIsValid,
+  //*
 }) {
-  //* Personal Info *//
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [phone, setPhone] = useState("");
-
   //* Monthly or Yearly plan *//
   const [isMonthlyChecked, setIsMonthlyChecked] = useState(true);
 
@@ -60,6 +71,10 @@ export default function MainContainer({
           setEmail={setEmail}
           phone={phone}
           setPhone={setPhone}
+          isNameValid={isNameValid}
+          isEmailValid={isEmailValid}
+          isPhoneValid={isPhoneValid}
+          isValid={isValid}
         />
       )}
 
@@ -97,6 +112,16 @@ export default function MainContainer({
         <StepsNavigation
           currentStep={currentStep}
           setCurrentStep={setCurrentStep}
+          name={name}
+          email={email}
+          phone={phone}
+          isNameValid={isNameValid}
+          isEmailValid={isEmailValid}
+          isPhoneValid={isPhoneValid}
+          setIsNameValid={setIsNameValid}
+          setIsEmailValid={setIsEmailValid}
+          setIsPhoneValid={setIsPhoneValid}
+          setIsValid={setIsValid}
         />
       )}
     </article>

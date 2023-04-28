@@ -36,6 +36,7 @@
     border: 1px solid c.$light-gray;
     border-radius: 0.5em;
     color: c.$marine-blue;
+    caret-color: c.$marine-blue;
     font-weight: 500;
     transition: v.$main-transition;
     &:hover {
@@ -46,6 +47,10 @@
     }
     &::placeholder {
       color: c.$cool-gray;
+    }
+    &::selection {
+      color: c.$white;
+      background: c.$marine-blue;
     }
   }
 }

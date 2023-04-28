@@ -103,6 +103,7 @@ export default function SelectPlan({
       <div className="cards-container">
         <button
           className={activePlanCard === plans.ARCADE.id ? "card active" : "card"}
+          disabled={activePlanCard === plans.ARCADE.id}
           onClick={() => handleActiveCard(plans.ARCADE.id)}
         >
           {arcadeSvg}
@@ -118,7 +119,10 @@ export default function SelectPlan({
         </button>
         <button
           className={activePlanCard === plans.ADVANCED.id ? "card active" : "card"}
-          onClick={() => handleActiveCard(plans.ADVANCED.id)}
+          disabled={activePlanCard === plans.ADVANCED.id}
+          onClick={() => {
+            handleActiveCard(plans.ADVANCED.id);
+          }}
         >
           {advancedSvg}
           <div className="card__text-wrapper">
@@ -133,6 +137,7 @@ export default function SelectPlan({
         </button>
         <button
           className={activePlanCard === plans.PRO.id ? "card active" : "card"}
+          disabled={activePlanCard === plans.PRO.id}
           onClick={() => handleActiveCard(plans.PRO.id)}
         >
           {proSvg}

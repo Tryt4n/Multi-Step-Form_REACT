@@ -28,6 +28,15 @@ export default function App() {
   const { width } = useWindowSize();
   const [currentStep, setCurrentStep] = useState(1);
 
+  //* Personal Info *//
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+  const [isNameValid, setIsNameValid] = useState(false);
+  const [isEmailValid, setIsEmailValid] = useState(false);
+  const [isPhoneValid, setIsPhoneValid] = useState(false);
+  const [isValid, setIsValid] = useState(true); //* Default true because by default warning info is hidden
+
   let headerText, instructiveText;
   if (currentStep === 1) {
     headerText = mainContainerText.personalInfo.headerText;
@@ -56,6 +65,20 @@ export default function App() {
         setCurrentStep={setCurrentStep}
         headerText={headerText}
         instructiveText={instructiveText}
+        name={name}
+        setName={setName}
+        email={email}
+        setEmail={setEmail}
+        phone={phone}
+        setPhone={setPhone}
+        isNameValid={isNameValid}
+        isEmailValid={isEmailValid}
+        isPhoneValid={isPhoneValid}
+        setIsNameValid={setIsNameValid}
+        setIsEmailValid={setIsEmailValid}
+        setIsPhoneValid={setIsPhoneValid}
+        isValid={isValid}
+        setIsValid={setIsValid}
       />
 
       {width <= 768 && (
@@ -63,6 +86,16 @@ export default function App() {
           <StepsNavigation
             currentStep={currentStep}
             setCurrentStep={setCurrentStep}
+            name={name}
+            email={email}
+            phone={phone}
+            isNameValid={isNameValid}
+            isEmailValid={isEmailValid}
+            isPhoneValid={isPhoneValid}
+            setIsNameValid={setIsNameValid}
+            setIsEmailValid={setIsEmailValid}
+            setIsPhoneValid={setIsPhoneValid}
+            setIsValid={setIsValid}
           />
         </footer>
       )}
