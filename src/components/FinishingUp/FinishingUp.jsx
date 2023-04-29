@@ -33,8 +33,8 @@ export default function FinishingUp({
   }
 
   return (
-    <>
-      <section className="summary-container">
+    <section>
+      <div className="summary-container">
         <header className="summary-container__header">
           <div>
             <h2 className="plan__name">
@@ -81,7 +81,7 @@ export default function FinishingUp({
             </li>
           )}
         </ul>
-      </section>
+      </div>
 
       <div className="summary">
         <p className="summary__text">Total (per {isMonthlyChecked ? "month" : "year"})</p>
@@ -89,6 +89,6 @@ export default function FinishingUp({
           +${totalPrice}/{isMonthlyChecked ? "mo" : "yr"}
         </strong>
       </div>
-    </>
+    </section>
   );
 }

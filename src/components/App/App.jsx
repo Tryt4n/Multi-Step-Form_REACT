@@ -54,6 +54,7 @@ export default function App() {
 
   return (
     <section className="form-block">
+      {currentStep === 5 && <h1 className="visually-hidden">Confirmation</h1>}
       <StepSection
         width={width}
         currentStep={currentStep}

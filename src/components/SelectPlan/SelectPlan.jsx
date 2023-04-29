@@ -99,7 +99,7 @@ export default function SelectPlan({
   }
 
   return (
-    <>
+    <section>
       <div className="cards-container">
         <button
           className={activePlanCard === plans.ARCADE.id ? "card active" : "card"}
@@ -182,6 +182,6 @@ export default function SelectPlan({
           onClick={handleSwitch}
         ></span>
       </div>
-    </>
+    </section>
   );
 }
