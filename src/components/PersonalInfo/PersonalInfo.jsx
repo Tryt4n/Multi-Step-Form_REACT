@@ -151,7 +151,7 @@ export default function PersonalInfo({
               placeholder="e.g. +1 234 567 890"
               ref={phoneRef}
               value={phone}
-              maxLength={11}
+              maxLength={13}
               onChange={(e) => {
                 let input = e.target.value;
                 const lastChar = input.charAt(input.length - 1);
