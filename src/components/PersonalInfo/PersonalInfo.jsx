@@ -154,6 +154,16 @@ export default function PersonalInfo({
               maxLength={11}
               onChange={(e) => {
                 let input = e.target.value;
+                const lastChar = input.charAt(input.length - 1);
+                //* Check if space or dash is entered after +
+                if (
+                  input.length > 1 &&
+                  (lastChar === " " || lastChar === "-") &&
+                  input.charAt(input.length - 2) === "+"
+                ) {
+                  //* Remove space or dash if it's entered directly after +
+                  input = input.slice(0, -1);
+                }
                 //* Removes all characters that are not numbers or "+" or "-" or space
                 input = input.replace(/[^0-9+\-\s]/g, "");
                 //* Removes spaces from the beginning of the entered value

@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import PersonalInfo from "../PersonalInfo/personalInfo";
+import PersonalInfo from "../PersonalInfo/PersonalInfo";
 import SelectPlan from "../SelectPlan/SelectPlan";
 import StepsNavigation from "../StepsNavigation/StepsNavigation";
 import PickAddOns from "../PickAddOns/PickAddOns";
