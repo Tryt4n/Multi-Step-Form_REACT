@@ -1,5 +1,7 @@
 # Frontend Mentor - Multi-step form
 
+[Link to the page](https://multi-step-form-with-react.netlify.app/)
+
 ![Design preview for the Multi-step form coding challenge](./design/desktop-preview.jpg)
 
 ## Welcome! 👋
